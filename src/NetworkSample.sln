@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerSample", "NetworkSample\NetworkSample.vcxproj", "{13571516-F690-4F35-B067-998C6EBDC204}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerSample", "ServerSample\ServerSample.vcxproj", "{13571516-F690-4F35-B067-998C6EBDC204}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientSample", "ClientSample\ClientSample.vcxproj", "{65F236DB-98B7-4480-BDFA-DD9115DA4A64}"
 EndProject
