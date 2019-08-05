@@ -1,4 +1,4 @@
-﻿// ClientSample.cpp
+// ClientSample.cpp
 
 #include "pch.h"
 #include <iostream>
@@ -18,14 +18,17 @@ int main(void)
 	// サーバのアドレス情報を設定
 	struct sockaddr_in dest;
 	memset(&dest, 0, sizeof(dest));
-	****
-	InetPton(****);
+
+	dest.sin_port = htons(7000);
+	dest.sin_family = AF_INET;
+	dest.sin_addr.s_addr = INADDR_ANY;
+	InetPton(AF_INET, INADDR_ANY, &dest.sin_addr.s_addr);
 
 	// ソケットの生成
 	SOCKET s = socket(AF_INET, SOCK_STREAM, 0);
 
 	//サーバへの接続
-	if (****) {
+	if (connect(s, (struct sockaddr *) &dest, sizeof(dest))) {
 		printf("%lsに接続できませんでした\n", destination);
 		return -1;
 	}
@@ -37,7 +40,7 @@ int main(void)
 
 		char send_data[1024];
 		scanf_s("%s", send_data, 1024);
-		if (****) {
+		if (send(socket(AF_INET, SOCK_STREAM, 0), send_data, 10, 0) < 0) {
 			printf("送信エラー\n");
 		}
 
@@ -45,8 +48,9 @@ int main(void)
 		if (strcmp("bye", send_data) == 0) break;
 
 		// サーバからデータを受信
+		
 		char buffer[1024];
-		if (****) {
+		if (recv(s, buffer, 1024, 0)) {
 			printf("受信エラー\n");
 		}
 		printf("応答がきました: %s\n", buffer);
@@ -54,7 +58,9 @@ int main(void)
 
 	// ソケット通信の終了
 	printf("接続終了\n");
-	****
+	closesocket(s);
+	WSACleanup();
 
+	getchar();
 	return 0;
 }
