@@ -56,6 +56,6 @@ int main(void)
 	// ソケット通信の終了
 	printf("接続終了\n");
 	closesocket(s);
-
+WSACleanup();
 	return 0;
 }
